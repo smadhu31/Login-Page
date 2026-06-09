@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium, interactive authentication portal featuring seamless transitions, secure inputs, and real-time form validation.">
+  <title>Aura Auth - Secure Login & Sign Up</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Decorative Background Blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="auth-wrapper">
+    <div class="auth-card" id="authCard">
+      <!-- Card Toggle Tabs -->
+      <div class="tabs-container">
+        <button class="tab-btn active" id="tabLogin" data-target="login">Sign In</button>
+        <button class="tab-btn" id="tabSignUp" data-target="signup">Sign Up</button>
+        <div class="tab-slider"></div>
+      </div>
+      <div class="card-content-wrapper">
+        <!-- LOGIN FORM CONTAINER -->
+        <div class="form-container login-active" id="loginFormContainer">
+          <div class="form-header">
+            <h2>Welcome Back</h2>
+            <p>Access your dashboard with your credentials</p>
+          </div>
+          <form id="loginForm" novalidate>
+            <!-- Email Input -->
+            <div class="input-group" id="loginEmailGroup">
+              <label for="loginEmail">Email Address</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <input type="email" id="loginEmail" placeholder="name@example.com" required autocomplete="email">
+                <span class="status-icon"></span>
+              </div>
+              <div class="error-msg" id="loginEmailError">Please enter a valid email address.</div>
+            </div>
+            <!-- Password Input -->
+            <div class="input-group" id="loginPasswordGroup">
+              <div class="label-wrapper">
+                <label for="loginPassword">Password</label>
+                <a href="#" class="forgot-link">Forgot?</a>
+              </div>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
+                <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                </button>
+              </div>
+              <div class="error-msg" id="loginPasswordError">Password is required.</div>
+            </div>
+            <!-- Keep me signed in -->
+            <div class="checkbox-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="rememberMe">
+                <span class="checkmark"></span>
+                Remember this device
+              </label>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="btnLogin">
+              <span>Sign In</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </form>
+          <div class="form-footer">
+            <p>Don't have an account? <span class="toggle-link" data-target="signup">Create one now</span></p>
+          </div>
+        </div>
+        <!-- SIGN UP FORM CONTAINER -->
+        <div class="form-container" id="signupFormContainer">
+          <div class="form-header">
+            <h2>Create Account</h2>
+            <p>Get started with your free secure account</p>
+          </div>
+          <form id="signupForm" novalidate>
+            <!-- Full Name Input -->
+            <div class="input-group" id="signupNameGroup">
+              <label for="signupName">Full Name</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <input type="text" id="signupName" placeholder="John Doe" required autocomplete="name">
+                <span class="status-icon"></span>
+              </div>
+              <div class="error-msg" id="signupNameError">Please enter your full name (minimum 2 words).</div>
+            </div>
+            <!-- Email Input -->
+            <div class="input-group" id="signupEmailGroup">
+              <label for="signupEmail">Email Address</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <input type="email" id="signupEmail" placeholder="name@example.com" required autocomplete="email">
+                <span class="status-icon"></span>
+              </div>
+              <div class="error-msg" id="signupEmailError">Please enter a valid email address.</div>
+            </div>
+            <!-- Phone Number Input -->
+            <div class="input-group" id="signupPhoneGroup">
+              <label for="signupPhone">Phone Number</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+                <input type="tel" id="signupPhone" placeholder="+1 (555) 123-4567" required autocomplete="tel">
+                <span class="status-icon"></span>
+              </div>
+              <div class="error-msg" id="signupPhoneError">Please enter a valid 10-digit phone number.</div>
+            </div>
+            <!-- Password Input -->
+            <div class="input-group" id="signupPasswordGroup">
+              <label for="signupPassword">Password</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <input type="password" id="signupPassword" placeholder="••••••••" required autocomplete="new-password">
+                <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                </button>
+              </div>
+              
+              <!-- Password Strength Meter -->
+              <div class="strength-meter">
+                <div class="strength-bars">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+                <span class="strength-text">Weak Password</span>
+              </div>
+              <!-- Password Requirements List -->
+              <ul class="password-reqs">
+                <li id="reqLength" class="invalid">
+                  <svg class="check" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  At least 8 characters
+                </li>
+                <li id="reqUpper" class="invalid">
+                  <svg class="check" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  At least 1 uppercase letter
+                </li>
+                <li id="reqLower" class="invalid">
+                  <svg class="check" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  At least 1 lowercase letter
+                </li>
+                <li id="reqNumber" class="invalid">
+                  <svg class="check" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  At least 1 number or special char
+                </li>
+              </ul>
+            </div>
+            <!-- Confirm Password Input -->
+            <div class="input-group" id="signupConfirmGroup">
+              <label for="signupConfirmPassword">Confirm Password</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <input type="password" id="signupConfirmPassword" placeholder="••••••••" required autocomplete="new-password">
+                <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                </button>
+              </div>
+              <div class="error-msg" id="signupConfirmError">Passwords do not match.</div>
+            </div>
+            <!-- Terms & Conditions -->
+            <div class="checkbox-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="termsCheck" required>
+                <span class="checkmark"></span>
+                I agree to the <a href="#" class="terms-link">Terms of Service</a> & <a href="#" class="terms-link">Privacy Policy</a>
+              </label>
+              <div class="error-msg text-center" id="termsError">You must accept the terms to continue.</div>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="btnSignUp">
+              <span>Sign Up</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </form>
+          <div class="form-footer">
+            <p>Already have an account? <span class="toggle-link" data-target="login">Sign In instead</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Toast/Success Modal Overlay -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <div class="success-icon-wrapper">
+        <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3 id="successTitle">Success!</h3>
+      <p id="successMessage">Your account has been successfully created.</p>
+      <button class="success-btn" id="successCloseBtn">Continue</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
